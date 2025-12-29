@@ -40,6 +40,7 @@ Test in LINE by sending:
 - `确认` (New: 发送 confirm 模板消息)
 - `音频` (New: 发送 audio 消息)
 - `视频` (New: 发送 video 消息)
+- `图片` (New: 发送 image 消息)
 
 ---
 
@@ -213,6 +214,7 @@ LINE Webhook 必须是公网可访问的 **HTTPS**，因此推荐把这个 FastA
 - `确认` (New: confirm template)
 - `音频` (New: audio message)
 - `视频` (New: video message)
+- `图片` (New: image message)
 
 demo 按钮为了简化使用的是 `message action`：点击后会发送 `@action <name>` 给 bot。
 

@@ -99,6 +99,18 @@ def a2ui_surface_to_line_flex(*, surface: Surface, alt_text: str = "A2UI") -> di
             "previewImageUrl": str(preview_url)
         }
 
+    if ctype == "Image":
+        # Return a native LINE Image Message
+        # Props: url, previewUrl
+        url = resolve_a2ui_value(props.get("url"), surface.data_model) or ""
+        preview_url = resolve_a2ui_value(props.get("previewUrl"), surface.data_model) or ""
+        
+        return {
+            "type": "image",
+            "originalContentUrl": str(url),
+            "previewImageUrl": str(preview_url)
+        }
+
     body = component_to_flex_box(component_id=surface.root, component=root_comp, surface=surface)
 
     return {

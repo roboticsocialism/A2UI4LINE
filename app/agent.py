@@ -29,6 +29,9 @@ async def decide_a2ui_response(*, user_text: str) -> list[dict]:
     if re.search(r"video|movie|视频|电影", t, re.I):
         return video_card()
 
+    if re.search(r"image|photo|picture|图片|照片", t, re.I):
+        return image_card()
+
     if re.search(r"help|幫助|幫助|說明|说明", t, re.I):
         return help_card()
 
@@ -211,6 +214,28 @@ def video_card() -> list[dict]:
                         "component": {
                             "Video": {
                                 "url": {"literalString": "https://www.w3schools.com/html/mov_bbb.mp4"},
+                                "previewUrl": {"literalString": "https://www.w3schools.com/html/pic_trulli.jpg"}
+                            }
+                        }
+                    }
+                ],
+            }
+        },
+        {"beginRendering": {"surfaceId": "main", "root": "root"}},
+    ]
+
+
+def image_card() -> list[dict]:
+    return [
+        {
+            "surfaceUpdate": {
+                "surfaceId": "main",
+                "components": [
+                    {
+                        "id": "root",
+                        "component": {
+                            "Image": {
+                                "url": {"literalString": "https://www.w3schools.com/html/pic_trulli.jpg"},
                                 "previewUrl": {"literalString": "https://www.w3schools.com/html/pic_trulli.jpg"}
                             }
                         }
