@@ -38,6 +38,8 @@ Test in LINE by sending:
 - `帮助`
 - `位置` (New: 发送 location 消息)
 - `确认` (New: 发送 confirm 模板消息)
+- `音频` (New: 发送 audio 消息)
+- `视频` (New: 发送 video 消息)
 
 ---
 
@@ -209,6 +211,8 @@ LINE Webhook 必须是公网可访问的 **HTTPS**，因此推荐把这个 FastA
 - `帮助`
 - `位置` (New: location message)
 - `确认` (New: confirm template)
+- `音频` (New: audio message)
+- `视频` (New: video message)
 
 demo 按钮为了简化使用的是 `message action`：点击后会发送 `@action <name>` 给 bot。
 

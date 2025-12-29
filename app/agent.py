@@ -23,6 +23,12 @@ async def decide_a2ui_response(*, user_text: str) -> list[dict]:
     if re.search(r"location|位置|where", t, re.I):
         return location_card()
 
+    if re.search(r"audio|music|sound|音频|音乐", t, re.I):
+        return audio_card()
+
+    if re.search(r"video|movie|视频|电影", t, re.I):
+        return video_card()
+
     if re.search(r"help|幫助|幫助|說明|说明", t, re.I):
         return help_card()
 
@@ -162,6 +168,50 @@ def location_card() -> list[dict]:
                                 "address": {"literalString": "1-3-3 Shibuya, Shibuya-ku, Tokyo, 150-0002"},
                                 "latitude": 35.65910807942215,
                                 "longitude": 139.70372892916203
+                            }
+                        }
+                    }
+                ],
+            }
+        },
+        {"beginRendering": {"surfaceId": "main", "root": "root"}},
+    ]
+
+
+def audio_card() -> list[dict]:
+    return [
+        {
+            "surfaceUpdate": {
+                "surfaceId": "main",
+                "components": [
+                    {
+                        "id": "root",
+                        "component": {
+                            "Audio": {
+                                "url": {"literalString": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"},
+                                "duration": 60000
+                            }
+                        }
+                    }
+                ],
+            }
+        },
+        {"beginRendering": {"surfaceId": "main", "root": "root"}},
+    ]
+
+
+def video_card() -> list[dict]:
+    return [
+        {
+            "surfaceUpdate": {
+                "surfaceId": "main",
+                "components": [
+                    {
+                        "id": "root",
+                        "component": {
+                            "Video": {
+                                "url": {"literalString": "https://www.w3schools.com/html/mov_bbb.mp4"},
+                                "previewUrl": {"literalString": "https://www.w3schools.com/html/pic_trulli.jpg"}
                             }
                         }
                     }

@@ -75,6 +75,30 @@ def a2ui_surface_to_line_flex(*, surface: Surface, alt_text: str = "A2UI") -> di
             "longitude": float(longitude)
         }
 
+    if ctype == "Audio":
+        # Return a native LINE Audio Message
+        # Props: url, duration (ms)
+        url = resolve_a2ui_value(props.get("url"), surface.data_model) or ""
+        duration = props.get("duration") or 1000  # Default 1s
+        
+        return {
+            "type": "audio",
+            "originalContentUrl": str(url),
+            "duration": int(duration)
+        }
+
+    if ctype == "Video":
+        # Return a native LINE Video Message
+        # Props: url, previewUrl
+        url = resolve_a2ui_value(props.get("url"), surface.data_model) or ""
+        preview_url = resolve_a2ui_value(props.get("previewUrl"), surface.data_model) or ""
+        
+        return {
+            "type": "video",
+            "originalContentUrl": str(url),
+            "previewImageUrl": str(preview_url)
+        }
+
     body = component_to_flex_box(component_id=surface.root, component=root_comp, surface=surface)
 
     return {
