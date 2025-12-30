@@ -266,3 +266,18 @@ git diff
 ## License
 
 Demo 用途示例项目，按你的仓库约定为准。
+
+
+## Important: 
+
+The sample code provided is for demonstration purposes and illustrates the mechanics of A2UI and the Agent-to-Agent (A2A) protocol. When building production applications, it is critical to treat any agent operating outside of your direct control as a potentially untrusted entity.
+重要提示：所提供的範例程式碼僅供示範用途，說明 A2UI 及代理對代理（Agent-to-Agent，A2A）協定的機制。在建置生產應用程式時，必須將任何在你直接控制之外運作的代理者視為可能不可信的實體。
+
+All operational data received from an external agent—including its AgentCard, messages, artifacts, and task statuses—should be handled as untrusted input. For example, a malicious agent could provide crafted data in its fields (e.g., name, skills.description) that, if used without sanitization to construct prompts for a Large Language Model (LLM), could expose your application to prompt injection attacks.
+從外部代理收到的所有操作資料——包括代理卡、訊息、工件及任務狀態——都應視為不受信任的輸入。例如，惡意代理人可能會在其欄位中提供精心設計的資料（例如名稱、技能描述），若未進行淨化而用於構建大型語言模型（LLM）的提示，可能會讓您的應用程式暴露於提示注入攻擊。
+
+Similarly, any UI definition or data stream received must be treated as untrusted. Malicious agents could attempt to spoof legitimate interfaces to deceive users (phishing), inject malicious scripts via property values (XSS), or generate excessive layout complexity to degrade client performance (DoS). If your application supports optional embedded content (such as iframes or web views), additional care must be taken to prevent exposure to malicious external sites.
+同樣地，任何 UI 定義或收到的資料流都必須被視為不可信。惡意代理人可能會試圖偽造合法介面以欺騙使用者（釣魚）、透過屬性值注入惡意腳本（XSS），或產生過度的版面複雜度以降低用戶端效能（DoS）。若您的應用程式支援可選的嵌入內容（如 iframes 或網頁檢視），則必須特別小心，避免暴露於惡意外部網站。
+
+Developer Responsibility: Failure to properly validate data and strictly sandbox rendered content can introduce severe vulnerabilities. Developers are responsible for implementing appropriate security measures—such as input sanitization, Content Security Policies (CSP), strict isolation for optional embedded content, and secure credential handling—to protect their systems and users.
+開發者責任：未能妥善驗證資料且嚴格沙盒呈現內容，可能帶來嚴重漏洞。開發者有責任實施適當的安全措施——例如輸入消毒、內容安全政策（Content Security Policies， CSP）、對可選嵌入內容的嚴格隔離，以及安全的憑證處理——以保護系統與使用者。
